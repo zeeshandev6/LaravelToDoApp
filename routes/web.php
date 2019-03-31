@@ -12,5 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/todo');
+});
+Auth::routes();
+Route::resource('todo', 'TodoController');
+
+Route::get('storage/{filename}', function ($filename)
+{
+    return Image::make(storage_path('public/' . $filename))->response();
 });
